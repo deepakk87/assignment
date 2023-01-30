@@ -17,10 +17,11 @@ You will be graded on the level of detail in each ticket, the clarity of the exe
 
 ## Your Breakdown Here
 
-### Task 0 : Discuss the approach with other team member and finalize the design [1 - 2 hr] 
+### Task 0 : Discuss the approach with other team members and finalize the design [1 - 2 hr] 
 
 I assume agent and facilities are related by foreignkey facilityId on agent table.
-We need to add this information data migration script and deploy the migration.
+
+We need to add `customAgentId` as column to the database using data migration script and deploy the migration.
 * Need to decide should (facilityId, customAgentId) is unique.
 * customAgentId can be null or not
 * if customAgentId is null probably unique contraint will not work
@@ -38,12 +39,13 @@ and run the migration script in dev/integ and then to prod.
 Acceptance Criteria
 * Database field is added in all environment
 * This should not cause any issue with existing system.
-* Acceptance tests should pass.
+* Existing Acceptance/Integration tests should pass.
 
 Once this is completed only then other tasks can be started.
 
 #### Task 2 : Code changes for api to save / retrieve customAgentId by facilities [1 hr]
-This will be called by the `task 2`
+This will be needed by the `task 3`
+Simple changes to the crud api for agent view/edit
 
 Acceptance Criteria
 * Able to update/view customAgentId via Api
@@ -58,17 +60,17 @@ We need to add a new field here.
 
 Acceptance Criteria
 * Able to update/view customAgentId via UI
-* End to End testing
+* End to End testing [Manual and automated if exists]
 * Unit test for UI
 
 #### Task 4 : Code changes for the reporting [1 hr]
 If customAgentId exist use that otherwise use InternalId
 
 * Without these changes report should still work.
-* After the changes we can see report
+* After the changes we can see updated reports with `customAgentId` 
 
 Acceptance Criteria
-* Updated Reports which displays customAgentId if it exists.
+* Updated Reports which displays `customAgentId` if it exists.
 * Unit Test changes
 * Acceptance Test changes
-
+* End to End testing [Manual and automated if exists]
